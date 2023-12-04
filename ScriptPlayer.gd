@@ -2,20 +2,38 @@ extends CharacterBody2D
 
 
 const SPEED = 600.0
-const JUMP_VELOCITY = -800.0
+const JUMP_VELOCITY = -900.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+var coyote = false
+var coyoteTime = 0.150 # Seconds
+var lastFloorContact = 0.0
+var jumpBufferMax = 0.5
+var jumpBuffer = 999
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+	
+	# Count time since last floor contact
+	if is_on_floor():
+		lastFloorContact = 0
+	else:
+		lastFloorContact += delta
+	# Jump buffer
+	jumpBuffer -= delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
+	if Input.is_action_just_pressed("Jump") and lastFloorContact < coyoteTime:
 		velocity.y = JUMP_VELOCITY
+		lastFloorContact = 999
+	elif jumpBuffer >= 0:
+		velocity.y = JUMP_VELOCITY
+		lastFloorContact = 999
+	else:
+		jumpBuffer = jumpBufferMax
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
