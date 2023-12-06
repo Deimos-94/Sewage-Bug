@@ -142,6 +142,10 @@ Ability={
 ]
 }
 
+[physics]
+
+2d/default_gravity=4000.0
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
