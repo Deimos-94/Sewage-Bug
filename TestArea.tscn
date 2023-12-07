@@ -1,11 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqdogenccqjee"]
+[gd_scene load_steps=16 format=3 uid="uid://bqdogenccqjee"]
 
-[ext_resource type="Texture2D" uid="uid://cyawhm6yko57q" path="res://Res/player.png" id="1_no80q"]
 [ext_resource type="Script" path="res://ScriptPlayer.gd" id="1_x7pr3"]
+[ext_resource type="Texture2D" uid="uid://gxdxh0a7y74" path="res://Docs/BugBody.png" id="2_bf78j"]
+[ext_resource type="Texture2D" uid="uid://ciemouwba7dx6" path="res://Docs/BugBack.png" id="3_nj85b"]
 [ext_resource type="Script" path="res://ScriptCamera.gd" id="4_i275h"]
+[ext_resource type="Texture2D" uid="uid://d0tpp1dex0xwy" path="res://Docs/BugWing.png" id="4_la7hv"]
 [ext_resource type="TileSet" uid="uid://bex1132kixgri" path="res://Res/new_tile_set.tres" id="4_nkjlq"]
+[ext_resource type="Texture2D" uid="uid://buvo7k70nvn1" path="res://Docs/BugLimbL-Top.png" id="5_c28uq"]
+[ext_resource type="Texture2D" uid="uid://de3hmakc1b4fv" path="res://Docs/BugLimbL-Mid.png" id="6_at2m5"]
+[ext_resource type="Texture2D" uid="uid://dpwh5cbvhpt5h" path="res://Docs/BugLimbL-Leg.png" id="7_ssr3h"]
+[ext_resource type="Texture2D" uid="uid://bktcdwcel3sg8" path="res://Docs/BugLimbR-Top.png" id="8_jhspk"]
+[ext_resource type="Texture2D" uid="uid://dwi1tjel2otl5" path="res://Docs/BugLimbR-Mid.png" id="9_g4nl2"]
+[ext_resource type="Texture2D" uid="uid://dmleq22mpokcs" path="res://Docs/BugLimbR-Leg.png" id="10_k0sp7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q46g2"]
+
+[sub_resource type="Animation" id="Animation_56beb"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5mmiq"]
+_data = {
+"idle": SubResource("Animation_56beb")
+}
 
 [node name="TestArea" type="Node2D"]
 
@@ -17,13 +33,129 @@ position = Vector2(0, -55)
 scale = Vector2(4, 5.5)
 shape = SubResource("RectangleShape2D_q46g2")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-position = Vector2(12, -80)
-scale = Vector2(0.225, 0.225)
-texture = ExtResource("1_no80q")
+[node name="Skeleton2D" type="Skeleton2D" parent="Player"]
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Camera2D")
+[node name="Body" type="Sprite2D" parent="Player/Skeleton2D"]
+position = Vector2(6.5, -22)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("2_bf78j")
+offset = Vector2(35, -290)
+
+[node name="BodyBone" type="Bone2D" parent="Player/Skeleton2D"]
+position = Vector2(0, -38)
+rest = Transform2D(1, 0, 0, 1, 0, -38)
+
+[node name="WingBone" type="Bone2D" parent="Player/Skeleton2D/BodyBone"]
+position = Vector2(20, -73)
+rest = Transform2D(1, 0, 0, 1, 20, -73)
+auto_calculate_length_and_angle = false
+length = 167.0
+bone_angle = 162.0
+
+[node name="Wing" type="Sprite2D" parent="Player/Skeleton2D/BodyBone/WingBone"]
+position = Vector2(-9.98, 3.64)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("4_la7hv")
+offset = Vector2(-340, 136)
+
+[node name="BackBone" type="Bone2D" parent="Player/Skeleton2D/BodyBone"]
+position = Vector2(20, -73)
+rotation = 2.22036
+rest = Transform2D(-0.604835, 0.796351, -0.796351, -0.604835, 20, -73)
+auto_calculate_length_and_angle = false
+length = 100.0
+bone_angle = 0.0
+
+[node name="Back" type="Sprite2D" parent="Player/Skeleton2D/BodyBone/BackBone"]
+position = Vector2(7.87045, 4.3444)
+rotation = -2.22036
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("3_nj85b")
+offset = Vector2(-104, 192)
+
+[node name="LimbL-TopBone" type="Bone2D" parent="Player/Skeleton2D/BodyBone"]
+position = Vector2(40, -50)
+rest = Transform2D(1, 0, 0, 1, 40, -50)
+auto_calculate_length_and_angle = false
+length = 40.0
+bone_angle = -39.0
+
+[node name="LimbL-Top" type="Sprite2D" parent="Player/Skeleton2D/BodyBone/LimbL-TopBone"]
+position = Vector2(-2.7, 0.879997)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("5_c28uq")
+offset = Vector2(84, -60)
+
+[node name="LimbL-MidBone" type="Bone2D" parent="Player/Skeleton2D/BodyBone"]
+position = Vector2(37, -23)
+rest = Transform2D(1, 0, 0, 1, 37, -23)
+auto_calculate_length_and_angle = false
+length = 40.0
+bone_angle = -15.0
+
+[node name="LimbL-Mid" type="Sprite2D" parent="Player/Skeleton2D/BodyBone/LimbL-MidBone"]
+position = Vector2(-0.580002, -1.48)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("6_at2m5")
+offset = Vector2(84, 4)
+
+[node name="LimbL-LegBone" type="Bone2D" parent="Player/Skeleton2D/BodyBone"]
+position = Vector2(11, 4)
+rest = Transform2D(1, 0, 0, 1, 11, 4)
+auto_calculate_length_and_angle = false
+length = 40.0
+bone_angle = 58.0
+
+[node name="LimbL-Leg" type="Sprite2D" parent="Player/Skeleton2D/BodyBone/LimbL-LegBone"]
+position = Vector2(0.78, -0.32)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("7_ssr3h")
+offset = Vector2(44, 76)
+
+[node name="LimbR-TopBone" type="Bone2D" parent="Player/Skeleton2D/BodyBone"]
+position = Vector2(12, -50)
+rest = Transform2D(1, 0, 0, 1, 12, -50)
+auto_calculate_length_and_angle = false
+length = 40.0
+bone_angle = -115.0
+
+[node name="LimbR-Top" type="Sprite2D" parent="Player/Skeleton2D/BodyBone/LimbR-TopBone"]
+position = Vector2(-1.1, -0.879997)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("8_jhspk")
+offset = Vector2(-44, -80)
+
+[node name="LimbR-MidBone" type="Bone2D" parent="Player/Skeleton2D/BodyBone"]
+position = Vector2(-6, -28)
+rest = Transform2D(1, 0, 0, 1, -6, -28)
+auto_calculate_length_and_angle = false
+length = 50.0
+bone_angle = -175.0
+
+[node name="LimbR-Mid" type="Sprite2D" parent="Player/Skeleton2D/BodyBone/LimbR-MidBone"]
+position = Vector2(-0.7, 0)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("9_g4nl2")
+offset = Vector2(-116, 8)
+
+[node name="LimbR-LegBone" type="Bone2D" parent="Player/Skeleton2D/BodyBone"]
+position = Vector2(-10, 2)
+rest = Transform2D(1, 0, 0, 1, -10, 2)
+auto_calculate_length_and_angle = false
+length = 42.5
+bone_angle = 125.0
+
+[node name="LimbR-Leg" type="Sprite2D" parent="Player/Skeleton2D/BodyBone/LimbR-LegBone"]
+position = Vector2(-0.219999, 0.799999)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("10_k0sp7")
+offset = Vector2(-60, 76)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+root_node = NodePath("../Skeleton2D/Body")
+libraries = {
+"": SubResource("AnimationLibrary_5mmiq")
+}
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
