@@ -41,7 +41,7 @@ func _physics_process(delta):
 	var direction = Input.get_axis("Left", "Right")
 	if direction:
 		#velocity.x = direction * SPEED
-		velocity.x = move_toward(velocity.x, direction * SPEED, 25)
+		velocity.x = move_toward(velocity.x, direction * SPEED, 40)
 	else:
 		velocity.x = move_toward(velocity.x, 0, 40)
 
