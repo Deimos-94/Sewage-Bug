@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 
 const SPEED = 750.0
@@ -57,10 +58,4 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func calculateDamage(attacker, defender):
-	var attack = attacker.getAttack()
-	var defense = defender.getDefense()
 
-	# Calculate the damage dealt and return it
-	var damage = attack - defense
-	return damage
