@@ -11,6 +11,12 @@ var coyoteTime = 0.150 # Seconds
 var lastFloorContact = 0.0
 var jumpBufferMax = 0.5
 var jumpBuffer = 0
+var hasDoubleJump = 1
+var canDoubleJump = 0
+var weaponSelect = 0
+
+
+
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -20,6 +26,7 @@ func _physics_process(delta):
 	# Count time since last floor contact
 	if is_on_floor():
 		lastFloorContact = 0
+		canDoubleJump = 1
 	else:
 		lastFloorContact += delta
 	# Jump buffer
@@ -29,11 +36,14 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Jump") and lastFloorContact < coyoteTime:
 		velocity.y = JUMP_VELOCITY
 		lastFloorContact = 999
-	#elif jumpBuffer >= 0:
+	#elif is_on_floor and Input.is_action_just_pressed("Jump") and jumpBuffer > 0:
 		#velocity.y = JUMP_VELOCITY
 		#lastFloorContact = 999
-	#else:
-		#jumpBuffer = jumpBufferMax
+	elif hasDoubleJump and canDoubleJump and Input.is_action_just_pressed("Jump"):
+		velocity.y = JUMP_VELOCITY / 2
+		canDoubleJump = 0
+	else:
+		jumpBuffer = jumpBufferMax
 
 	# Get the input direction and handle the movement/deceleration.
 	# Accelerating based movement.
@@ -46,3 +56,11 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, 40)
 
 	move_and_slide()
+
+func calculateDamage(attacker, defender):
+	var attack = attacker.getAttack()
+	var defense = defender.getDefense()
+
+	# Calculate the damage dealt and return it
+	var damage = attack - defense
+	return damage

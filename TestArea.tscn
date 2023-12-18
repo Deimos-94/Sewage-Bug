@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bqdogenccqjee"]
+[gd_scene load_steps=19 format=3 uid="uid://bqdogenccqjee"]
 
 [ext_resource type="Script" path="res://ScriptPlayer.gd" id="1_x7pr3"]
 [ext_resource type="Texture2D" uid="uid://gxdxh0a7y74" path="res://Docs/BugBody.png" id="2_bf78j"]
@@ -12,8 +12,84 @@
 [ext_resource type="Texture2D" uid="uid://bktcdwcel3sg8" path="res://Docs/BugLimbR-Top.png" id="8_jhspk"]
 [ext_resource type="Texture2D" uid="uid://dwi1tjel2otl5" path="res://Docs/BugLimbR-Mid.png" id="9_g4nl2"]
 [ext_resource type="Texture2D" uid="uid://dmleq22mpokcs" path="res://Docs/BugLimbR-Leg.png" id="10_k0sp7"]
+[ext_resource type="Texture2D" uid="uid://b3p05lw1yfs2i" path="res://Docs/BugSword.png" id="12_5n61v"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q46g2"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31l2x"]
+
+[sub_resource type="Animation" id="Animation_ceghc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BodyBone/LimbR-LegBone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BodyBone/LimbR-LegBone:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BodyBone/LimbL-LegBone:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(11, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BodyBone/LimbL-LegBone:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BodyBone:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -38)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BodyBone:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_56beb"]
 resource_name = "idle"
@@ -91,86 +167,14 @@ tracks/5/keys = {
 "values": [0.0, -0.0956764, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_ceghc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BodyBone/LimbR-LegBone:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-10, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BodyBone/LimbR-LegBone:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BodyBone/LimbL-LegBone:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(11, 4)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BodyBone/LimbL-LegBone:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("BodyBone:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -38)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("BodyBone:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5mmiq"]
 _data = {
 "RESET": SubResource("Animation_ceghc"),
 "idle": SubResource("Animation_56beb")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ilfi"]
+size = Vector2(20, 156.5)
 
 [node name="TestArea" type="Node2D"]
 
@@ -178,9 +182,9 @@ _data = {
 script = ExtResource("1_x7pr3")
 
 [node name="Hitbox" type="CollisionShape2D" parent="Player"]
-position = Vector2(0, -55)
-scale = Vector2(4, 5.5)
-shape = SubResource("RectangleShape2D_q46g2")
+position = Vector2(0, -61)
+scale = Vector2(4, 4.085)
+shape = SubResource("CapsuleShape2D_31l2x")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="Player"]
 
@@ -310,6 +314,20 @@ libraries = {
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("4_i275h")
+
+[node name="Weapon" type="Node2D" parent="Player"]
+position = Vector2(70, -107)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Weapon"]
+position = Vector2(46.52, -58.005)
+rotation = 0.712295
+shape = SubResource("RectangleShape2D_7ilfi")
+
+[node name="SwordGreen" type="Sprite2D" parent="Player/Weapon"]
+position = Vector2(2.52001, -1.00501)
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("12_5n61v")
+offset = Vector2(238, -252)
 
 [node name="Level" type="TileMap" parent="."]
 tile_set = ExtResource("4_nkjlq")
