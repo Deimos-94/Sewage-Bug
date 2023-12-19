@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqdogenccqjee"]
+[gd_scene load_steps=5 format=3 uid="uid://bqdogenccqjee"]
 
 [ext_resource type="PackedScene" uid="uid://dlkag6gtn13gg" path="res://player.tscn" id="1_0hckt"]
 [ext_resource type="PackedScene" uid="uid://db7u8im5uedbl" path="res://spikes.tscn" id="3_pj3ge"]
 [ext_resource type="TileSet" uid="uid://bex1132kixgri" path="res://Res/new_tile_set.tres" id="4_nkjlq"]
+[ext_resource type="PackedScene" uid="uid://dda68hpwyhxa2" path="res://Maggot.tscn" id="4_uat4p"]
 
 [node name="TestArea" type="Node2D"]
 
@@ -18,3 +19,6 @@ position = Vector2(-1152, 0)
 
 [node name="Spikes2" parent="." instance=ExtResource("3_pj3ge")]
 position = Vector2(-640, 384)
+
+[node name="Maggot" parent="." instance=ExtResource("4_uat4p")]
+position = Vector2(384, -384)
