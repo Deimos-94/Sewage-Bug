@@ -17,3 +17,6 @@ shape = SubResource("CapsuleShape2D_jecjr")
 position = Vector2(-4, -22)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_u0s04")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-50, -46)

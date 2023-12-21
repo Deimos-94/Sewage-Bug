@@ -15,9 +15,31 @@ var jumpBuffer = 0
 var hasDoubleJump = 1
 var canDoubleJump = 0
 var weaponSelect = 0
+var direction # -1 (left) to 1 (right)
+var is_going_right = true
 
-
-
+# The character is facing the momentum. In the air character is facing last pressed button
+func updateDirection():
+	if is_on_floor():
+		if is_going_right:
+			if direction < 0:
+				if velocity.x < 0:
+					scale.x = -1
+					is_going_right = false
+		else:
+			if direction > 0:
+				if velocity.x > 0:
+					scale.x = -1
+					is_going_right = true
+	else:
+		if is_going_right:
+			if direction < 0:
+				scale.x = -1
+				is_going_right = false
+		else:
+			if direction > 0:
+				scale.x = -1
+				is_going_right = true
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -49,13 +71,14 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# Accelerating based movement.
 	# Weird behavior: moving opposite of momentum makes moving more slippery than not mmoving
-	var direction = Input.get_axis("Left", "Right")
+	direction = Input.get_axis("Left", "Right")
 	if direction:
 		#velocity.x = direction * SPEED
 		velocity.x = move_toward(velocity.x, direction * SPEED, 40)
 	else:
 		velocity.x = move_toward(velocity.x, 0, 40)
-
+	
 	move_and_slide()
+	updateDirection()
 
 
