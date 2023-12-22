@@ -41,6 +41,10 @@ func updateDirection():
 				scale.x = -1
 				is_going_right = true
 
+#func swingWeapon():
+#	pass
+	
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():

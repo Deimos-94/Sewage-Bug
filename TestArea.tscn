@@ -22,3 +22,6 @@ position = Vector2(-640, 384)
 
 [node name="Maggot" parent="." instance=ExtResource("4_uat4p")]
 position = Vector2(384, -384)
+
+[node name="Maggot2" parent="." instance=ExtResource("4_uat4p")]
+position = Vector2(-256, -640)

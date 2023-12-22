@@ -1,6 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://dlkag6gtn13gg"]
+[gd_scene load_steps=16 format=3 uid="uid://dlkag6gtn13gg"]
 
-[ext_resource type="Script" path="res://ScriptPlayer.gd" id="1_j81ss"]
+[ext_resource type="Script" path="res://ScriptPlayer.gd" id="1_bsyn5"]
 [ext_resource type="Texture2D" uid="uid://d0tpp1dex0xwy" path="res://Docs/BugWing.png" id="2_4s8ms"]
 [ext_resource type="Texture2D" uid="uid://ciemouwba7dx6" path="res://Docs/BugBack.png" id="3_as52a"]
 [ext_resource type="Texture2D" uid="uid://buvo7k70nvn1" path="res://Docs/BugLimbL-Top.png" id="4_n4seb"]
@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://dmleq22mpokcs" path="res://Docs/BugLimbR-Leg.png" id="9_26prw"]
 [ext_resource type="Texture2D" uid="uid://gxdxh0a7y74" path="res://Docs/BugBody.png" id="10_xsbda"]
 [ext_resource type="Script" path="res://ScriptCamera.gd" id="11_6ywla"]
-[ext_resource type="PackedScene" uid="uid://bq6r260lx2sgt" path="res://weapon.tscn" id="12_oqb72"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31l2x"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ppd4"]
+size = Vector2(20, 24.4431)
 
 [sub_resource type="Animation" id="Animation_ceghc"]
 length = 0.001
@@ -173,12 +173,12 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_j81ss")
+script = ExtResource("1_bsyn5")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(0, -61)
-scale = Vector2(4, 4.085)
-shape = SubResource("CapsuleShape2D_31l2x")
+position = Vector2(0, -55)
+scale = Vector2(4, 4.5)
+shape = SubResource("RectangleShape2D_8ppd4")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
 
@@ -308,5 +308,3 @@ libraries = {
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 script = ExtResource("11_6ywla")
-
-[node name="Weapon" parent="." instance=ExtResource("12_oqb72")]
