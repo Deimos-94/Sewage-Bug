@@ -17,6 +17,7 @@ var canDoubleJump = 0
 var weaponSelect = 0
 var direction # -1 (left) to 1 (right)
 var is_going_right = true
+var armL = find_child("LimbL-TopBone", true, true)
 
 # The character is facing the momentum. In the air character is facing last pressed button
 func updateDirection():
@@ -41,9 +42,16 @@ func updateDirection():
 				scale.x = -1
 				is_going_right = true
 
-#func swingWeapon():
-#	pass
-	
+func reloadScene():
+	#get_tree().reload_scene()
+	pass
+
+func swingWeapon():
+	$"Skeleton2D/BodyBone/LimbL-TopBone/Weapon".rotate(1.3)
+	$"Skeleton2D/BodyBone/LimbL-TopBone/Weapon/Area2D/CollisionShape2D".disabled = false
+func swingWeaponUnswing():
+	$"Skeleton2D/BodyBone/LimbL-TopBone/Weapon".rotate(-1.3)
+	$"Skeleton2D/BodyBone/LimbL-TopBone/Weapon/Area2D/CollisionShape2D".disabled = true
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -54,6 +62,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		lastFloorContact = 0
 		canDoubleJump = 1
+		$Skeleton2D/BodyBone/WingBone/Wing.visible = false
 	else:
 		lastFloorContact += delta
 	# Jump buffer
@@ -68,6 +77,7 @@ func _physics_process(delta):
 		#lastFloorContact = 999
 	elif hasDoubleJump and canDoubleJump and Input.is_action_just_pressed("Jump"):
 		velocity.y = JUMP_VELOCITY / 2
+		$Skeleton2D/BodyBone/WingBone/Wing.visible = true
 		canDoubleJump = 0
 	else:
 		jumpBuffer = jumpBufferMax
@@ -81,6 +91,14 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, direction * SPEED, 40)
 	else:
 		velocity.x = move_toward(velocity.x, 0, 40)
+	
+	if Input.is_action_just_pressed("Attack"):
+		swingWeapon()
+	if Input.is_action_just_released("Attack"):
+		swingWeaponUnswing()
+	
+	if Input.is_action_just_released("StartPause"):
+		get_tree().change_scene_to_file("res://main_menu.tscn")
 	
 	move_and_slide()
 	updateDirection()

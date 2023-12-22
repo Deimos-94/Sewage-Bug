@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dlkag6gtn13gg"]
+[gd_scene load_steps=17 format=3 uid="uid://dlkag6gtn13gg"]
 
 [ext_resource type="Script" path="res://ScriptPlayer.gd" id="1_bsyn5"]
 [ext_resource type="Texture2D" uid="uid://d0tpp1dex0xwy" path="res://Docs/BugWing.png" id="2_4s8ms"]
 [ext_resource type="Texture2D" uid="uid://ciemouwba7dx6" path="res://Docs/BugBack.png" id="3_as52a"]
 [ext_resource type="Texture2D" uid="uid://buvo7k70nvn1" path="res://Docs/BugLimbL-Top.png" id="4_n4seb"]
+[ext_resource type="PackedScene" uid="uid://bq6r260lx2sgt" path="res://weapon.tscn" id="5_bcnkr"]
 [ext_resource type="Texture2D" uid="uid://de3hmakc1b4fv" path="res://Docs/BugLimbL-Mid.png" id="5_h2cp4"]
 [ext_resource type="Texture2D" uid="uid://dpwh5cbvhpt5h" path="res://Docs/BugLimbL-Leg.png" id="6_fedyi"]
 [ext_resource type="Texture2D" uid="uid://bktcdwcel3sg8" path="res://Docs/BugLimbR-Top.png" id="7_qrwim"]
@@ -194,6 +195,7 @@ length = 167.0
 bone_angle = 162.0
 
 [node name="Wing" type="Sprite2D" parent="Skeleton2D/BodyBone/WingBone"]
+visible = false
 position = Vector2(-9.98, 3.64)
 scale = Vector2(0.22, 0.22)
 texture = ExtResource("2_4s8ms")
@@ -209,6 +211,7 @@ length = 100.0
 bone_angle = 0.0
 
 [node name="Back" type="Sprite2D" parent="Skeleton2D/BodyBone/BackBone"]
+z_index = 10
 position = Vector2(7.87045, 4.3444)
 rotation = -2.22036
 scale = Vector2(0.22, 0.22)
@@ -216,6 +219,7 @@ texture = ExtResource("3_as52a")
 offset = Vector2(-104, 192)
 
 [node name="LimbL-TopBone" type="Bone2D" parent="Skeleton2D/BodyBone"]
+z_index = 1
 position = Vector2(40, -50)
 rest = Transform2D(1, 0, 0, 1, 40, -50)
 auto_calculate_length_and_angle = false
@@ -228,7 +232,11 @@ scale = Vector2(0.22, 0.22)
 texture = ExtResource("4_n4seb")
 offset = Vector2(84, -60)
 
+[node name="Weapon" parent="Skeleton2D/BodyBone/LimbL-TopBone" instance=ExtResource("5_bcnkr")]
+position = Vector2(31, -19)
+
 [node name="LimbL-MidBone" type="Bone2D" parent="Skeleton2D/BodyBone"]
+z_index = 1
 position = Vector2(37, -23)
 rest = Transform2D(1, 0, 0, 1, 37, -23)
 auto_calculate_length_and_angle = false
@@ -242,6 +250,7 @@ texture = ExtResource("5_h2cp4")
 offset = Vector2(84, 4)
 
 [node name="LimbL-LegBone" type="Bone2D" parent="Skeleton2D/BodyBone"]
+z_index = 1
 position = Vector2(11, 4)
 rest = Transform2D(1, 0, 0, 1, 11, 4)
 auto_calculate_length_and_angle = false
@@ -255,6 +264,7 @@ texture = ExtResource("6_fedyi")
 offset = Vector2(44, 76)
 
 [node name="LimbR-TopBone" type="Bone2D" parent="Skeleton2D/BodyBone"]
+z_index = 11
 position = Vector2(12, -50)
 rest = Transform2D(1, 0, 0, 1, 12, -50)
 auto_calculate_length_and_angle = false
@@ -268,6 +278,7 @@ texture = ExtResource("7_qrwim")
 offset = Vector2(-44, -80)
 
 [node name="LimbR-MidBone" type="Bone2D" parent="Skeleton2D/BodyBone"]
+z_index = 11
 position = Vector2(-6, -28)
 rest = Transform2D(1, 0, 0, 1, -6, -28)
 auto_calculate_length_and_angle = false
@@ -281,6 +292,7 @@ texture = ExtResource("8_qcdy5")
 offset = Vector2(-116, 8)
 
 [node name="LimbR-LegBone" type="Bone2D" parent="Skeleton2D/BodyBone"]
+z_index = 11
 position = Vector2(-10, 2)
 rest = Transform2D(1, 0, 0, 1, -10, 2)
 auto_calculate_length_and_angle = false
